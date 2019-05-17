@@ -1,4 +1,29 @@
 from math import ceil
+
+weights = {
+            "A": 3,
+            "B": 2,
+            "C": 8,
+            "D": 12,
+            "E": 25,
+            "F": 15,
+            "G": 0.5,
+            "H": 1,
+            "I": 2,
+            }
+
+stored_at = {
+            "A": "C1",
+            "B": "C1",
+            "C": "C1",
+            "D": "C2",
+            "E": "C2",
+            "F": "C2",
+            "G": "C3",
+            "H": "C3",
+            "I": "C3",
+            }
+
 locations = {
             "C1": 0,
             "C2": 1,
@@ -44,11 +69,25 @@ def distance_between(pointA, pointB):
 
 def main():
     reqs = {
-            "C1":4,
-            "C2":10,
+            "C1":0,
+            "C2":0,
             "C3":0,
             "L1":0
     }
+    r = {
+            "A": 1,
+            "B": 2,
+            "C": 0,
+            "D": 0,
+            "E": 6,
+            "F": 0,
+            "G": 0,
+            "H": 0,
+            "I": 2,
+            }
+    for key, val in r.items():
+            reqs[stored_at[key]] += float(val) * weights[key]
+    print(reqs)
     remaining_warehouses = [key for key, val in reqs.items() if val != 0 ]
     costs = []
     for next_node in remaining_warehouses:
